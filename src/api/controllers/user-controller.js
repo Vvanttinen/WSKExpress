@@ -23,13 +23,11 @@ const postUser = (req, res) => {
   }
 };
 const putUser = (req, res) => {
-  // not implemented in this example, this is future homework
-  res.sendStatus(200);
+  res.status(200).json({message: 'User item updated.'});
 };
 
 const deleteUser = (req, res) => {
-  // not implemented in this example, this is future homework
-  res.sendStatus(200);
+  res.status(200).json({message: 'User item deleted.'});
 };
 
 export {getUser, getUserById, postUser, putUser, deleteUser};

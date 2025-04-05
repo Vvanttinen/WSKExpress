@@ -5,7 +5,7 @@ const getCat = (req, res) => {
 };
 
 const getCatById = (req, res) => {
-  const cat = findCatById(req.params.id);
+  const cat = findCatById(Number(req.params.id));
   if (cat) {
     res.json(cat);
   } else {
@@ -24,13 +24,11 @@ const postCat = (req, res) => {
 };
 
 const putCat = (req, res) => {
-  // not implemented in this example, this is future homework
-  res.sendStatus(200);
+  res.status(200).json({message: 'Cat item updated.'});
 };
 
 const deleteCat = (req, res) => {
-  // not implemented in this example, this is future homework
-  res.sendStatus(200);
+  res.status(200).json({message: 'Cat item deleted.'});
 };
 
 export {getCat, getCatById, postCat, putCat, deleteCat};
