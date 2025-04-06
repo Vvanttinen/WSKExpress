@@ -70,4 +70,17 @@ const removeUser = async (id) => {
   }
 }
 
-export {listAllUsers, findUserById, addUser, modifyUser, removeUser};
+const listAllCatsByUserId = async (id) => {
+  const [rows] = await promisePool.execute(`
+    SELECT
+      c.*
+    FROM
+      wsk_cats c
+    WHERE
+      c.owner = ?
+  `, [id]);
+  console.log('rows', rows);
+  return rows;
+};
+
+export {listAllUsers, findUserById, addUser, modifyUser, removeUser, listAllCatsByUserId};

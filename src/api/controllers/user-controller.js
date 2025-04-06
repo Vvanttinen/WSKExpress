@@ -1,4 +1,11 @@
-import {listAllUsers, findUserById, addUser, modifyUser, removeUser} from '../models/user-model.js';
+import {
+  listAllUsers,
+  findUserById,
+  addUser,
+  modifyUser,
+  removeUser,
+  listAllCatsByUserId,
+} from '../models/user-model.js';
 
 const getUser = async (req, res) => {
   try {
@@ -70,4 +77,19 @@ const deleteUser = async (req, res) => {
   }
 };
 
-export {getUser, getUserById, postUser, putUser, deleteUser};
+const getUserCats = async (req, res) => {
+  try {
+    const user = await findUserById(req.params.id);
+    if (user) {
+      const cats = await listAllCatsByUserId(req.params.id);
+      res.json(cats);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (err) {
+    console.error('Get user cats failed:', err);
+    res.status(500).json({message: 'Internal server error.'});
+  }
+};
+
+export {getUser, getUserById, postUser, putUser, deleteUser, getUserCats};
